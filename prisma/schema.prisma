@@ -17,7 +17,8 @@ model Book {
   updatedAt     DateTime      @updatedAt
   title         String        
   isbn          String
-  avgRating     Int    
+  avgRating     Int  
+  published     Boolean       @default(false)  
   authorId      Int 
   author        User          @relation(fields: [authorId], references: [id])
 }
