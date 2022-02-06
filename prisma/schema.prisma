@@ -17,11 +17,13 @@ model Book {
   updatedAt     DateTime      @updatedAt
   title         String        
   isbn          String
-  avgRating     Int  
+  avgRating     Int?  
   published     Boolean       @default(false)  
   authorId      Int 
   author        User          @relation(fields: [authorId], references: [id])
+  reviews       Review[]
 }
+
 
 model User {
   id            Int           @id @default(autoincrement())
@@ -37,6 +39,7 @@ model User {
   profile       Profile?
 }
 
+
 model Profile {
   id            Int           @id @default(autoincrement())
   bio           String?
@@ -47,10 +50,12 @@ model Profile {
 
 model Review {
   id            Int           @id @default(autoincrement()) 
-  rating        Int[]     
+  rating        Int    
   comment       String    
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   user          User          @relation(fields: [userId], references: [id])
   userId        Int
+  book          Book          @relation(fields: [bookId], references: [id])      
+  bookId        Int 
 }

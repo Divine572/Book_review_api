@@ -2,12 +2,13 @@ import { ApolloServer } from 'apollo-server';
 import { Prisma, PrismaClient } from '@prisma/client';
 
 import { typeDefs } from './schema';
+import { Query } from './resolvers';
 
 
 
 export const prisma = new PrismaClient();
 
-interface Context {
+export interface Context {
     prisma: PrismaClient<Prisma.PrismaClientOptions, 
     never, 
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined>,
@@ -16,6 +17,14 @@ interface Context {
 
 const server = new ApolloServer({
     typeDefs,
+    resolvers: {
+        Query,
+    },
+    context: async () => {
+        return {
+            prisma,
+        }
+    }
     
 });
 
