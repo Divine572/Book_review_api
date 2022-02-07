@@ -25,10 +25,9 @@ const server = new ApolloServer({
             prisma,
         }
     }
-    
 });
 
 
 server.listen().then(({ url }) => {
     console.log(`GraphQL server running on `, url);
-})
+});
