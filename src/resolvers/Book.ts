@@ -2,11 +2,8 @@ import { Context } from '../server';
 
 
 interface BookParentType {
-    authorId: number
-}
-
-interface ReviewsParentType {
-    id: number
+    id: number;
+    authorId: number;
 }
 
 
@@ -18,7 +15,7 @@ export const Book = {
             }
         })
     },
-    reviews: async (parent: ReviewsParentType, { skip, take }: { skip: number, take: number }, { prisma }: Context) => {
+    reviews: async (parent: BookParentType, { skip, take }: { skip: number, take: number }, { prisma }: Context) => {
         return await prisma.review.findMany({
             where: {
                 bookId: parent.id
