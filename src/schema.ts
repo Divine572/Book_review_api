@@ -5,7 +5,7 @@ export const typeDefs = gql`
     type Query {
         books(take: Int!, skip: Int!): [Book!]!
         book(bookId: ID!): Book
-        reviews: [Review!]!
+        reviews(take: Int!, skip: Int!): [Review!]!
         review(reviewId: ID!): Review
         profile(userId: ID!): Profile
         me: User
@@ -20,7 +20,7 @@ export const typeDefs = gql`
         createdAt: String!
         avgRating: Int
         author: User!
-        reviews: [Review!]!
+        reviews(take: Int!, skip: Int!): [Review!]!
     }
 
     type User {
@@ -31,9 +31,9 @@ export const typeDefs = gql`
         password: String!
         email: String!
         createdAt: String!
-        reviews: [Review!]!
+        reviews(take: Int!, skip: Int!): [Review!]!
         profile: Profile
-        books: [Book!]!
+        books(take: Int!, skip: Int!): [Book!]!
     }
 
     type Profile {
