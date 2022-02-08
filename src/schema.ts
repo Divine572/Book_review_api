@@ -16,6 +16,8 @@ export const typeDefs = gql`
         bookCreate(book: BookInput!): BookPayload!
         bookUpdate(bookId: ID!): BookPayload!
         bookDelete(bookId: ID!): BookPayload!
+        bookPublish(bookId: ID!): BookPayload!
+        bookUnpublish(book: ID!): BookPayload!
         reviewCreate(review: ReviewInput!): ReviewPayload!
         reviewUpdate(reviewId: ID!): ReviewPayload!
         reviewDelete(reviewId: ID!): ReviewPayload!
