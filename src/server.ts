@@ -2,7 +2,8 @@ import { ApolloServer } from 'apollo-server';
 import { Prisma, PrismaClient } from '@prisma/client';
 
 import { typeDefs } from './schema';
-import { Query } from './resolvers';
+import { Query, Review, Book, User, Profile } from './resolvers';
+
 
 
 
@@ -19,6 +20,10 @@ const server = new ApolloServer({
     typeDefs,
     resolvers: {
         Query,
+        Review,
+        User,
+        Profile,
+        Book,
     },
     context: async () => {
         return {

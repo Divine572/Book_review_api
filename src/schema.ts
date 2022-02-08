@@ -12,6 +12,20 @@ export const typeDefs = gql`
         users: [User!]!
     }
 
+    type Mutation {
+        bookCreate(book: BookInput!): BookPayload!
+        bookUpdate(bookId: ID!): BookPayload!
+        bookDelete(bookId: ID!): BookPayload!
+        reviewCreate(review: ReviewInput!): ReviewPayload!
+        reviewUpdate(reviewId: ID!): ReviewPayload!
+        reviewDelete(reviewId: ID!): ReviewPayload!
+        profileCreate(profile: ProfileInput!): ProfilePayload!
+        profileUpdate(profileId: ID!): ProfilePayload!
+        profileDelete(profileId: ID!): ProfilePayload!
+        signup(firstname: String!, lastname: String!, credentials: CredentialsInput!): AuthPayload!
+        sigin(credentials: CredentialsInput!): AuthPayload!
+    }
+
     type Book {
         id: ID!
         title: String!
@@ -28,7 +42,6 @@ export const typeDefs = gql`
         username: String!
         firstname: String!
         lastname: String!
-        password: String!
         email: String!
         createdAt: String!
         reviews(take: Int!, skip: Int!): [Review!]!
@@ -49,6 +62,51 @@ export const typeDefs = gql`
         createdAt: String!
         user: User!
         book: Book!
+    }
+
+    input BookInput {
+        title: String
+        isbn: String
+        avgRating: Int
+    }
+
+    input ReviewInput {
+        comment: String
+        rating: Int
+    }
+
+    input CredentialsInput {
+        username: String
+        password: String
+        email: String 
+    }
+
+    input ProfileInput {
+        bio: String
+    }
+
+    type UserError {
+        message: String!
+    }
+
+    type BookPayload {
+        userErrors: [UserError!]!
+        book: Book
+    }
+
+    type ReviewPayload {
+        userErrors: [UserError!]!
+        review: Review
+    }
+
+    type AuthPayload {
+        userErrors: [UserError!]!
+        token: String
+    }
+
+    type ProfilePayload {
+        userErrors: [UserError!]!
+        profile: Profile
     }
     
 `;
