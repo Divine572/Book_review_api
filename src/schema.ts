@@ -69,7 +69,6 @@ export const typeDefs = gql`
     input BookInput {
         title: String
         isbn: String
-        avgRating: Int
     }
 
     input ReviewInput {
