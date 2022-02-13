@@ -44,6 +44,8 @@ export const bookResolvers = {
                 }
             })
         }
+    },
+    // bookUpdate: async (_: any, bookId : number, { prisma }: Context ): Promise<BookPayloadType> => {
 
-    }
+    // }
 }
