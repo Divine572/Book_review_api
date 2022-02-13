@@ -150,7 +150,49 @@ export const authResolvers = {
             token
         }
     },
-    signin: async (_: any, { credentials }: SigninArgs, { prisma }: Context) => {
+    signin: async (_: any, { credentials }: SigninArgs, { prisma }: Context): Promise<AuthPayloadType>=> {
+        const { email, password, username } = credentials;
 
+        const user = await prisma.user.findUnique({
+            where: {
+                email,
+                username
+            }
+        });
+
+        if(!user) {
+            return {
+                userErrors: [
+                    {
+                        message: 'Invalid user credentials'
+                    }
+                ],
+                token: null
+            }
+        }
+
+        const isMatch = await bycrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return {
+                userErrors: [
+                    {
+                        message: 'Invalid user credentials'
+                    }
+                ],
+                token: null
+            }
+        }
+
+        const token = await jwt.sign({
+            userId: user.id
+        }, JWT_SIGNATURE, {
+            expiresIn: '1hr'
+        });
+
+        return {
+            userErrors: [],
+            token
+        }
     }
 }
