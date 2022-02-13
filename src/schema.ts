@@ -24,7 +24,7 @@ export const typeDefs = gql`
         profileCreate(profile: ProfileInput!): ProfilePayload!
         profileUpdate(profileId: ID!): ProfilePayload!
         profileDelete(profileId: ID!): ProfilePayload!
-        signup(firstname: String!, lastname: String!, credentials: CredentialsInput!): AuthPayload!
+        signup(firstname: String!, lastname: String!, bio: String!, credentials: CredentialsInput!): AuthPayload!
         sigin(credentials: CredentialsInput!): AuthPayload!
     }
 
