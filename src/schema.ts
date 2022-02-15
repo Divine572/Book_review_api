@@ -14,15 +14,15 @@ export const typeDefs = gql`
 
     type Mutation {
         bookCreate(book: BookInput!): BookPayload!
-        bookUpdate(bookId: ID!): BookPayload!
+        bookUpdate(bookId: ID!, book: BookInput!): BookPayload!
         bookDelete(bookId: ID!): BookPayload!
         bookPublish(bookId: ID!): BookPayload!
         bookUnpublish(book: ID!): BookPayload!
         reviewCreate(review: ReviewInput!): ReviewPayload!
-        reviewUpdate(reviewId: ID!): ReviewPayload!
+        reviewUpdate(reviewId: ID!, review: ReviewInput!): ReviewPayload!
         reviewDelete(reviewId: ID!): ReviewPayload!
         profileCreate(profile: ProfileInput!): ProfilePayload!
-        profileUpdate(profileId: ID!): ProfilePayload!
+        profileUpdate(profileId: ID!, profile: ProfileInput!): ProfilePayload!
         profileDelete(profileId: ID!): ProfilePayload!
         signup(firstname: String!, lastname: String!, bio: String!, credentials: CredentialsInput!): AuthPayload!
         sigin(credentials: CredentialsInput!): AuthPayload!
