@@ -163,5 +163,55 @@ export const bookResolvers = {
             userErrors: [],
             book: existingBook
         }
+    },
+    bookPublish: async (_: any, { bookId } : { bookId: string }, { prisma, userInfo }: Context  ): Promise<BookPayloadType> => {
+
+        if (!userInfo) {
+            return {
+                userErrors: [
+                    {
+                        message: 'Forbidden access (User unauthenticated)'
+                    }
+                ],
+                book: null
+            }
+        }
+
+        return {
+            userErrors: [],
+            book: await prisma.book.update({
+                data: {
+                    published: true
+                },
+                where: {
+                    id: Number(bookId)
+                }
+            })
+        }
+    },
+    bookUnpublish: async (_: any, { bookId } : { bookId: string }, { prisma, userInfo }: Context  ): Promise<BookPayloadType> => {
+
+        if (!userInfo) {
+            return {
+                userErrors: [
+                    {
+                        message: 'Forbidden access (User unauthenticated)'
+                    }
+                ],
+                book: null
+            }
+        }
+
+        return {
+            userErrors: [],
+            book: await prisma.book.update({
+                data: {
+                    published: false
+                },
+                where: {
+                    id: Number(bookId)
+                }
+            })
+        }
     }
 }
