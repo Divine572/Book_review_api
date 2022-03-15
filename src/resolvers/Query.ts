@@ -36,6 +36,21 @@ export const Query = {
         });
         return reviews;
     },
-    
+    review: async (_: any, { reviewId }: { reviewId: number }, { prisma }: Context ) => {
+        const review = await prisma.review.findUnique({
+            where: {
+                id: reviewId
+            }
+        });
+        return review;
+    },
+    profile: async (_: any, { userId }: { userId: number }, { prisma }: Context ) => {
+        const profile = await prisma.user.findUnique({
+            where: {
+                id: userId
+            }
+        });
+        return profile;
+    }
     
 };
