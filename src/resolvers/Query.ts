@@ -23,6 +23,19 @@ export const Query = {
             }
         });
         return book;
-    }
+    },
+    reviews: async (_: any, { skip, take }: { skip: number, take: number }, { prisma }: Context ) => {
+        const reviews = await prisma.review.findMany({
+            orderBy: [
+                {
+                    createdAt: 'desc'
+                }
+            ],
+            skip,
+            take
+        });
+        return reviews;
+    },
+    
     
 };

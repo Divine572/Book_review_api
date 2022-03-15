@@ -11,6 +11,7 @@ export const typeDefs = gql`
         me: User
         users: [User!]!
     }
+    
 
     type Mutation {
         bookCreate(book: BookInput!): BookPayload!
