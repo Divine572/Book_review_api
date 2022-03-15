@@ -45,12 +45,13 @@ export const Query = {
         return review;
     },
     profile: async (_: any, { userId }: { userId: number }, { prisma }: Context ) => {
-        const profile = await prisma.user.findUnique({
+        const profile = await prisma.profile.findUnique({
             where: {
-                id: userId
+                userId: userId
             }
         });
         return profile;
-    }
+    },
+    me: async (_: any, {})
     
 };
